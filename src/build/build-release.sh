@@ -1,15 +1,17 @@
 #!/bin/sh
 set -eu
+: ${PROJECT_NAME:?}
 : ${GO_PIPELINE_COUNTER:?}
 : ${GPG_KEYNAME:?}
 : ${PWD:?}
+SCRIPTS=`dirname "$0"`
 set -x
 
-RELEASE_VERSION=`ruby scripts/get-release-version.rb $GO_PIPELINE_COUNTER`
-RELEASE_NOTES=`ruby scripts/get-release-notes.rb RELEASE-NOTES.md`
+RELEASE_VERSION=`ruby $SCRIPTS/get-release-version.rb $GO_PIPELINE_COUNTER`
+RELEASE_NOTES=`ruby $SCRIPTS/get-release-notes.rb RELEASE-NOTES.md`
 TAG="v$RELEASE_VERSION"
 
-ruby scripts/prepare-release-notes.rb RELEASE-NOTES.md "$RELEASE_VERSION"
+ruby $SCRIPTS/prepare-release-notes.rb RELEASE-NOTES.md "$RELEASE_VERSION"
 git add RELEASE-NOTES.md
 git commit -m "Release $RELEASE_VERSION"
 git tag -u "$GPG_KEYNAME" -m "Jumi $RELEASE_VERSION" -m "$RELEASE_NOTES" "$TAG"
@@ -35,7 +37,7 @@ mvn clean deploy \
     -Dgpg.passphrase="" \
     -DaltDeploymentRepository="staging::default::file://$PWD/staging"
 
-ruby scripts/bump-release-notes.rb RELEASE-NOTES.md
+ruby $SCRIPTS/bump-release-notes.rb RELEASE-NOTES.md
 git add RELEASE-NOTES.md
 git commit -m "Prepare for next development iteration"
 

@@ -6,10 +6,11 @@ unless ARGV.length == 1
   puts "Usage: #{$0} RELEASE_NOTES_FILE"
   exit 1
 end
-RELEASE_NOTES_FILE = ARGV.shift
+release_notes_file = ARGV.shift
+project_name = ENV['PROJECT_NAME'] or raise "PROJECT_NAME not set"
 
-all_releases = IO.read(RELEASE_NOTES_FILE)
-next_release = /^### Upcoming Changes$(.+?)^### Jumi/m.match(all_releases)
+all_releases = IO.read(release_notes_file)
+next_release = /^### Upcoming Changes$(.+?)^### #{project_name}/m.match(all_releases)
 unless next_release
   raise "release notes for the upcoming release not found in: #{all_releases}"
 end

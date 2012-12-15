@@ -1,5 +1,6 @@
 *.txt           eol=lf
 *.md            eol=lf
+*.java          eol=lf
 *.sh            eol=lf
 *.rb            eol=lf
 *.html          eol=lf

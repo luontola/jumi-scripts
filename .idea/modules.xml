@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/test/dummy-project/dummy-core/dummy-core.iml" filepath="$PROJECT_DIR$/test/dummy-project/dummy-core/dummy-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/dummy-project/dummy-project.iml" filepath="$PROJECT_DIR$/test/dummy-project/dummy-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/jumi-scripts.iml" filepath="$PROJECT_DIR$/jumi-scripts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/dummy-project/parent/parent.iml" filepath="$PROJECT_DIR$/test/dummy-project/parent/parent.iml" />
     </modules>
   </component>
 </project>
