@@ -8,4 +8,6 @@ export GPG_KEYNAME=dummy@example.com
 
 $SRC/build/build-release.sh
 
+$SRC/analyze/coverage-report.sh
+
 # TODO: asserts for what the build does

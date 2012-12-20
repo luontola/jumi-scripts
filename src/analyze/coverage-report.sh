@@ -1,5 +1,6 @@
 #!/bin/sh
 set -eu
+SCRIPTS=`dirname "$0"`
 set -x
 
 mvn clean verify \
@@ -9,4 +10,4 @@ mvn clean verify \
     -DskipTests \
     -Dinvoker.skip
 
-ruby scripts/generate-coverage-report-index.rb coverage-reports/index.html
+ruby $SCRIPTS/generate-coverage-report-index.rb coverage-reports/index.html
