@@ -13,4 +13,7 @@ rm -rf .git
 # Remove any changes the build scripts did
 git reset -q -- .
 git checkout -- .
-git clean -fd -- .
+
+# Need an extra -f to remove embedded repositories
+# http://rackerhacker.com/2012/10/24/using-git-clean-to-remove-subdirectories-containing-git-repositories/
+git clean -ffxd -- .

@@ -7,11 +7,19 @@ export SRC=$(readlink -f "$TEST/../src")
 $TEST/cleanup.sh
 
 # Prepare test data
+gpg --import $TEST/dummy-keys.gpg
+
 cd $TEST/dummy-project
 git init
 git add .
 git commit -m "Initial commit"
-gpg --import $TEST/dummy-keys.gpg
+
+export GIT_REPOSITORY="$TEST/dummy-project/fake-github.git"
+mkdir $GIT_REPOSITORY
+cd $GIT_REPOSITORY
+git init --bare
+cd ..
+git push $GIT_REPOSITORY master
 
 # Run tests
 if $TEST/pipeline.sh

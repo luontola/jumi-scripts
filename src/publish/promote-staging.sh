@@ -2,11 +2,12 @@
 set -eu
 : ${DEPLOY_USERNAME:?}
 : ${DEPLOY_PASSWORD:?}
+SCRIPTS=`dirname "$0"`
 set -x
 
 VERSION=`cat build/version`
 
-ruby scripts/upload-maven-repository.rb staging https://oss.sonatype.org/service/local/staging/deploy/maven2
+ruby $SCRIPTS/upload-maven-repository.rb staging https://oss.sonatype.org/service/local/staging/deploy/maven2
 
 # The POM is not checked out to working directory when this script is run,
 # so we must say manually that which artifact's open staging repository to close.
