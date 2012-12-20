@@ -1,10 +1,10 @@
 #!/bin/bash
 set -eu
 
-cd dummy-project
-SRC="../../src"
-TEST=".."
+export TEST=$(readlink -f $(dirname $0))
+export SRC=$(readlink -f "$TEST/../src")
 
+cd dummy-project
 $TEST/cleanup.sh
 
 # Prepare test data
@@ -13,15 +13,8 @@ git add .
 git commit -m "Initial commit"
 gpg --import $TEST/dummy-keys.gpg
 
-# Parameters required by the build scripts
-export PROJECT_NAME="Dummy Project"
-export GO_PIPELINE_COUNTER=42
-export GPG_KEYNAME=dummy@example.com
-
 # Run tests
-# TODO: extract tests to different file
-# TODO: asserts for what the build does
-if $SRC/build/build-release.sh
+if $TEST/pipeline.sh
 then
     $TEST/cleanup.sh
     echo ""
