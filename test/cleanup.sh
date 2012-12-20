@@ -1,11 +1,7 @@
 #!/bin/bash
 set -eu
 
-if [[ `basename $PWD` != "dummy-project" ]]
-then
-    echo "Cannot run in $PWD"
-    exit 1
-fi
+cd $(dirname $0)/dummy-project
 
 # Remove the dummy keys used for signing
 gpg --batch --delete-secret-keys "D9043920AF8818F44D4D2C2A5D9ADEA0E55E2B08" || true
