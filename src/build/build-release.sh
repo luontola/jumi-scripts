@@ -20,6 +20,7 @@ mkdir build
 echo "$RELEASE_VERSION" > build/version
 echo "$RELEASE_REVISION" > build/revision
 echo "$RELEASE_NOTES" > build/release-notes
+cp $SCRIPTS/build-summary.html build/
 
 mvn versions:set \
     --batch-mode \
