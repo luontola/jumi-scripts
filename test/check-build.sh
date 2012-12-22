@@ -42,7 +42,7 @@ cd staging.git
     # TODO: check tag message
 
     # The tag is signed
-    git tag --verify v0.1.42
+    git tag -v v0.1.42
 
     # Commits release notes with the release version and date
     git show v0.1.42:RELEASE-NOTES.md | grep --line-regexp --quiet --fixed-strings "### Jumi 0.1.42 (`date --iso-8601`)"
