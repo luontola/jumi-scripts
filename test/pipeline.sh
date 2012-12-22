@@ -18,7 +18,7 @@ $SRC/analyze/coverage-report.sh
 $TEST/check-analyze.sh
 
 ### Publish stage ###
-$SRC/publish/check-release-notes.sh
+$SRC/publish/check-release-notes.sh     # TODO: needs unit tests for the failure case
 #$SRC/publish/promote-staging.sh        # TODO: cannot test without Nexus
 $SRC/publish/push-staging.sh
-# TODO: asserts for what publish does
+$TEST/check-publish.sh
