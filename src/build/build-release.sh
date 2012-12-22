@@ -3,7 +3,6 @@ set -eu
 : ${PROJECT_NAME:?}
 : ${GO_PIPELINE_COUNTER:?}
 : ${GPG_KEYNAME:?}
-: ${PWD:?}
 SCRIPTS=`dirname "$0"`
 set -x
 
@@ -35,7 +34,7 @@ mvn clean deploy \
     -Psonatype-oss-release \
     -Dgpg.keyname="$GPG_KEYNAME" \
     -Dgpg.passphrase="" \
-    -DaltDeploymentRepository="staging::default::file://$PWD/staging"
+    -DaltDeploymentRepository="staging::default::file:staging"
 
 ruby $SCRIPTS/bump-release-notes.rb RELEASE-NOTES.md
 git add RELEASE-NOTES.md
