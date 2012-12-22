@@ -10,7 +10,7 @@
         $(function () {
             $('.include').each(function (index, element) {
                 $(element).text('Loading...');
-                var path = $(element).attr('path');
+                var path = $(element).attr('data-path');
                 $.get(path, function (content) {
                     $(element).text(content);
                 })
@@ -21,13 +21,13 @@
 </head>
 <body>
 
-<p>Version: <code class="include" path="../build/version"></code></p>
+<p>Version: <code class="include" data-path="version"></code></p>
 
-<p>Revision: <code class="include" path="../build/revision"></code></p>
+<p>Revision: <code class="include" data-path="revision"></code></p>
 
 <p>Release Notes:</p>
 
-<pre class="include" path="../build/release-notes"></pre>
+<pre class="include" data-path="release-notes"></pre>
 
 </body>
 </html>
