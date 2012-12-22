@@ -45,12 +45,12 @@ cd staging.git
     git tag -v v0.1.42
 
     # Tag message contains release name and release notes
-    git for-each-ref --format="%(subject)" refs/tags/v0.1.42 | contains-line "Jumi 0.1.42"
+    git for-each-ref --format="%(subject)" refs/tags/v0.1.42 | contains-line "Dummy Project 0.1.42"
     git for-each-ref --format="%(body)" refs/tags/v0.1.42 | contains-line "- Did more stuff"
 
     # Commits release notes with the release version and date
     git log -1 --pretty=%s v0.1.42 | contains-line "Release 0.1.42"
-    git show v0.1.42:RELEASE-NOTES.md | contains-line "### Jumi 0.1.42 (`date --iso-8601`)"
+    git show v0.1.42:RELEASE-NOTES.md | contains-line "### Dummy Project 0.1.42 (`date --iso-8601`)"
 
     # Prepares release notes for the next development increment
     git log -1 --pretty=%s master | contains-line "Prepare for next development iteration"

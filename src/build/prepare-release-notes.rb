@@ -10,11 +10,11 @@ unless ARGV.length == 2
 end
 RELEASE_NOTES_FILE = ARGV.shift
 RELEASE_VERSION = ARGV.shift
+PROJECT_NAME = ENV['PROJECT_NAME'] or raise "PROJECT_NAME not set"
 
 old_release_notes = IO.read(RELEASE_NOTES_FILE)
-# TODO: parameterize project name
 new_release_notes = old_release_notes.sub(/^### Upcoming Changes$/,
-                                          "### Jumi #{RELEASE_VERSION} (#{Date.today.strftime('%F')})")
+                                          "### #{PROJECT_NAME} #{RELEASE_VERSION} (#{Date.today.strftime('%F')})")
 
 File.open(RELEASE_NOTES_FILE, 'wb') { |file|
   file.write(new_release_notes)

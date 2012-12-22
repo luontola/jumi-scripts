@@ -1,5 +1,6 @@
 #!/bin/sh
 set -eu
+: ${PROJECT_NAME:?}
 : ${DEPLOY_USERNAME:?}
 : ${DEPLOY_PASSWORD:?}
 SCRIPTS=`dirname "$0"`
@@ -21,4 +22,4 @@ mvn org.sonatype.plugins:nexus-maven-plugin:2.1:staging-close \
     -Dnexus.groupId=fi.jumi \
     -Dnexus.artifactId=parent \
     -Dnexus.version="$VERSION" \
-    -Dnexus.description="Jumi $VERSION"
+    -Dnexus.description="$PROJECT_NAME $VERSION"
