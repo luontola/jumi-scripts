@@ -15,7 +15,7 @@ $TEST/check-build.sh
 
 ### Analyze stage ###
 $SRC/analyze/coverage-report.sh
-# TODO: asserts for what analyze does
+$TEST/check-analyze.sh
 
 ### Publish stage ###
 $SRC/publish/check-release-notes.sh
