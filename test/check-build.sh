@@ -1,18 +1,19 @@
 #!/bin/bash
 set -eu
+. $(dirname $0)/utils.sh
 set -v
 
 # In build metadata:
 cd build
 
     # Saves version number
-    cat version | grep --line-regexp --quiet --fixed-strings "0.1.42"
+    cat version | contains-line "0.1.42"
 
     # Saves Git revision
-    cat revision | grep --line-regexp --quiet "[a-f0-9]\{40\}"
+    cat revision | contains-line-matching "[a-f0-9]\{40\}"
 
     # Saves release notes
-    cat release-notes | grep --line-regexp --quiet "\- Did more stuff"
+    cat release-notes | contains-line "- Did more stuff"
 
     # Creates build summary page
     test -f build-summary.html
@@ -38,21 +39,21 @@ cd ..
 cd staging.git
 
     # Tags the release
-    git tag | grep --line-regexp --quiet --fixed-strings "v0.1.42"
+    git tag | contains-line "v0.1.42"
 
     # The tag is signed
     git tag -v v0.1.42
 
     # Tag message contains release name and release notes
-    git for-each-ref --format="%(subject)" refs/tags/v0.1.42 | grep --line-regexp --quiet --fixed-strings "Jumi 0.1.42"
-    git for-each-ref --format="%(body)" refs/tags/v0.1.42 | grep --line-regexp --quiet "\- Did more stuff"
+    git for-each-ref --format="%(subject)" refs/tags/v0.1.42 | contains-line "Jumi 0.1.42"
+    git for-each-ref --format="%(body)" refs/tags/v0.1.42 | contains-line "- Did more stuff"
 
     # Commits release notes with the release version and date
-    git log -1 --pretty=%s v0.1.42 | grep --line-regexp --quiet --fixed-strings "Release 0.1.42"
-    git show v0.1.42:RELEASE-NOTES.md | grep --line-regexp --quiet --fixed-strings "### Jumi 0.1.42 (`date --iso-8601`)"
+    git log -1 --pretty=%s v0.1.42 | contains-line "Release 0.1.42"
+    git show v0.1.42:RELEASE-NOTES.md | contains-line "### Jumi 0.1.42 (`date --iso-8601`)"
 
     # Prepares release notes for the next development increment
-    git log -1 --pretty=%s master | grep --line-regexp --quiet --fixed-strings "Prepare for next development iteration"
-    git show master:RELEASE-NOTES.md | grep --line-regexp --quiet --fixed-strings "### Upcoming Changes"
+    git log -1 --pretty=%s master | contains-line "Prepare for next development iteration"
+    git show master:RELEASE-NOTES.md | contains-line "### Upcoming Changes"
 
 cd ..
