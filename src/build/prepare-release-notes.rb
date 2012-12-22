@@ -12,6 +12,7 @@ RELEASE_NOTES_FILE = ARGV.shift
 RELEASE_VERSION = ARGV.shift
 
 old_release_notes = IO.read(RELEASE_NOTES_FILE)
+# TODO: parameterize project name
 new_release_notes = old_release_notes.sub(/^### Upcoming Changes$/,
                                           "### Jumi #{RELEASE_VERSION} (#{Date.today.strftime('%F')})")
 

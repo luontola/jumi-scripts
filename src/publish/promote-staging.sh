@@ -11,6 +11,7 @@ ruby $SCRIPTS/upload-maven-repository.rb staging https://oss.sonatype.org/servic
 
 # The POM is not checked out to working directory when this script is run,
 # so we must say manually that which artifact's open staging repository to close.
+# TODO: parameterize project name & groupId
 mvn org.sonatype.plugins:nexus-maven-plugin:2.1:staging-close \
     --batch-mode \
     --errors \

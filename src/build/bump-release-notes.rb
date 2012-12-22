@@ -11,6 +11,7 @@ end
 RELEASE_NOTES_FILE = ARGV.shift
 
 old_release_notes = IO.read(RELEASE_NOTES_FILE)
+# TODO: parameterize project name
 new_release_notes = old_release_notes.sub(/^(### Jumi)/,
                                           "### Upcoming Changes\n\n- TBD\n\n\\1")
 
