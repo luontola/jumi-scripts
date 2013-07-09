@@ -16,8 +16,8 @@ mvn $NEXUS_PLUGIN:deploy-staged-repository \
 
 # TODO: do a smoke test on the closed staging repository before releasing
 
-#mvn $NEXUS_PLUGIN:release \
-#    -DnexusUrl=https://oss.sonatype.org/ \
-#    -DserverId=ossrh-releases \
-#    -DaltStagingDirectory=staging \
-#    -DstagingDescription="$PROJECT_NAME $VERSION"
+mvn $NEXUS_PLUGIN:release \
+    -DnexusUrl=https://oss.sonatype.org/ \
+    -DserverId=ossrh-releases \
+    -DaltStagingDirectory=staging \
+    -DstagingDescription="$PROJECT_NAME $VERSION"
