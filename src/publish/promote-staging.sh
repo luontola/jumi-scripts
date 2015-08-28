@@ -5,7 +5,7 @@ SCRIPTS=`dirname "$0"`
 set -x
 
 VERSION=`cat build/version`
-NEXUS_PLUGIN="org.sonatype.plugins:nexus-staging-maven-plugin:1.4.4"
+NEXUS_PLUGIN="org.sonatype.plugins:nexus-staging-maven-plugin:1.6.6"
 PROFILE_ID="2801a17694e2ea"
 
 # Upload and close the OSSRH staging repository
